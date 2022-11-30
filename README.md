@@ -78,9 +78,9 @@ make clean
 
 ## Contributors
 
-Mark S
-Gökhan K
-Manuel S
-Deniz D
-Luis V
+Mark S,
+Gökhan K,
+Manuel S,
+Deniz D,
+Luis V,
 And myself
