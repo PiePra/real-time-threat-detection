@@ -2,7 +2,7 @@
 - [Real-time threat detection](#real-time-threat-detection)
   - [Foreward](#foreward)
   - [Quick Glance](#quick-glance)
-- [Further Improvements](#further-improvements)
+  - [Further Improvements](#further-improvements)
   - [Setup](#setup)
   - [Contributors](#contributors)
 
@@ -40,7 +40,7 @@ So we did exactly this!
 | ![](img/alerts.png) | ![](img/device.png) | ![](img/pc.png) | ![](img/time.png) |
 
 
-# Further Improvements
+## Further Improvements
 
 In a production environment this system has to handle a lot of data throughput. In a last minute effort to increase the throughput we merged all checks into one api call. This can be further improved by doing the checks in memory of the dataflow, discarding the usage of http completely. Furthermore the dataflow is able to be used in multiple threads, maybe a partitioned kafka topic. 
 
@@ -83,4 +83,4 @@ Gökhan K,
 Manuel S,
 Deniz D,
 Luis V,
-And myself
+Pierre R
