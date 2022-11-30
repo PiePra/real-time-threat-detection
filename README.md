@@ -1,4 +1,10 @@
 # Real-time threat detection
+- [Real-time threat detection](#real-time-threat-detection)
+  - [Foreward](#foreward)
+  - [Quick Glance](#quick-glance)
+- [Further Improvements](#further-improvements)
+  - [Setup](#setup)
+
 ## Foreward
 For Data Analytics Hackathon our Challenge requirement was to detect an insider privilege missuse detection based on the dataset provided by Lindauer, Brian (2020): Insider Threat Test Dataset[[1]]. Keep in might that the code and this repistory was done and collaborated on by multiple people and within a timeframe of like two and a half days so it is kind of a mess. Nonetheless it is released the way it was finished for the hackathon. We might update the project with further improvements in the future but will keep this state of code for the sake of transparency. The breakdown of steps how the problem was solved might be helpful on how to design such systems.
 
