@@ -20,6 +20,14 @@ We created our proof of concept as a real-time outlier detection system with the
 7. We keep only the events in our frontend that scored highly and keep everything else in the lifecycle of the underlying message queue to account for some sort of protection of personal data.  
 8. With this approach the learned distributions and features of the system should be updated periodically in batch or directly calculated on streaming to amount for the changing environment that is present in an enterprise network. E.g. a new site is created in a different timezone. 
 
+The system works without the usage of state of the art machine learning and leverages only pandas and statistics to score events.
+One of our first attempts included machine learning technologies like isolation forests without having much success as the used dataset was not suited. And as Chip Huyen said in Desinging Machine Learning Systems[[2]]: 
+"While it’s essential to stay up to date with new technologies and beneficial to evaluate them for your business,
+the most important thing to do when solving a problem is finding solutions that can solve that problem."
+So we did exactly this!
+
+[1]: https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/
+
 | Alerts Dashboard | Distribution of USB Connections | Distribution of PC Usage | Distribution of Timestamps |
 |--------------------------------------|--------------------------------------|--------------------------------------|--------------------------------------|
 | ![](img/alerts.png) | ![](img/device.png) | ![](img/pc.png) | ![](img/time.png) |
