@@ -1,0 +1,15 @@
+.output{
+    border: 1px solid rgba(94,51,63, 0.2);
+    border-radius: 0.25rem ;
+    padding: calc (1ex - 1px);
+}
+.warning{
+    color: orange !important;
+}
+.alert{
+    color: red !important;
+}
+.margin{
+    padding-bottom:  2ex;
+    margin-bottom: 1.5ex;
+}
