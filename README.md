@@ -79,7 +79,7 @@ make clean
 ## Contributors
 
 Mark S,
-Gökhan K,
+Gökhan T,
 Manuel S,
 Deniz D,
 Luis V,
