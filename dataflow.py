@@ -1,14 +1,12 @@
 from datetime import timedelta, datetime
-
+import time
 from bytewax.dataflow import Dataflow
 from bytewax.inputs import ManualInputConfig
 from bytewax.outputs import StdOutputConfig, ManualOutputConfig
 from bytewax.execution import run_main, spawn_cluster, cluster_main
-from bytewax.window import SystemClockConfig, TumblingWindowConfig
-from sqlalchemy import create_engine
 import pandas as pd
-import requests
 from bytewax import parse
+from app.dataflow import timescore, webscore
 
 
 def input_builder(worker_index, worker_count, resume_state):
@@ -31,33 +29,23 @@ def score(line):
     json = line.copy()
     del json["id"]
     json["activity"] = json["activity"].strip()
-    r = requests.post("http://localhost:8000/check", json=json)
-    r = r.json()
-    line["time_score"] = r["time_score"]
-    line["pc_score"] = r["pc_score"]
-    line["activity_score"] = r["activity_score"]
+    line["time_score"] = timescore.score(json["time"])
+    if line["activity"].startswith("http"):
+        line["activity_score"] = webscore.score(json["activity"])
+    
+    #score3
     return line
 
 def sum_score(line):
-    line["score"] = line["time_score"] + line["activity_score"] + line["pc_score"]
+    line["score"] = line["time_score"]# + line["activity_score"] + line["pc_score"]
+    time.sleep(1)
     return line
-
-def _get_db_engine():
-    DB_PASSWORD = "digger"
-    DB_USER = "digger"
-    DB_HOST = "localhost"
-    DB_PORT = 5432
-    DB_NAME = "digger"
-    connection_string = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-    return create_engine(connection_string)
 
 def output_builder(worker_index: int, worker_count: int) -> callable:
     """Build the function to write to feast"""
-    engine = _get_db_engine()
     def write(line):
         if line["score"] > 1.4:
-            df = pd.DataFrame([line])
-            df.to_sql("alerts", engine, if_exists='append', index=False)
+            return line
     return write
 
 
@@ -66,10 +54,7 @@ flow.input("input", ManualInputConfig(input_builder))
 flow.map(get_msg)
 flow.map(score)
 flow.map(sum_score)
-#flow.capture(StdOutputConfig())
-flow.capture(ManualOutputConfig(output_builder))
-#args = "-w1 -n4".split()
+flow.capture(StdOutputConfig())
 
 if __name__ == "__main__":
     run_main(flow)
-    #spawn_cluster(flow, **parse.cluster_args(args))
