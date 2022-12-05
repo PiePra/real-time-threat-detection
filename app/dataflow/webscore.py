@@ -1,4 +1,3 @@
-import time
 import logging
 import pandas as pd
 from app.config import config

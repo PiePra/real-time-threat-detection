@@ -14,6 +14,7 @@ user = pd.concat(dfs)
 user = user.drop("month", axis=1)
 user = user.drop_duplicates()
 user = user.set_index("user_id")
+user = user
 logging.warning("Imported User Data")
 
 def join_on_uid(df: pd.DataFrame) -> pd.DataFrame:

@@ -1,4 +1,3 @@
-import time
 import logging
 import pandas as pd
 from app.config import config
@@ -23,5 +22,3 @@ def score(time: str)-> float:
 
 _refresh()
 threading.Thread(target=lambda: helper.every(config.TIMESTAMP_SCORE_TTL, _refresh)).start()
-
-

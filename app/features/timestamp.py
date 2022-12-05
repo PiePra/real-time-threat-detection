@@ -4,7 +4,7 @@ from app.config import config
 import logging
 
 
-def run_scoring(df: pd.DataFrame) -> None:
+def update(df: pd.DataFrame) -> None:
     df_timestamps = df.copy()
     df_timestamps["day"] = df_timestamps["date"].apply(lambda x: x.weekday())
     df_timestamps["hour"] = df_timestamps["date"].apply(lambda x: x.hour)

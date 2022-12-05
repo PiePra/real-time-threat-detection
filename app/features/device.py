@@ -3,7 +3,7 @@ from app.cache import cache
 from app.config import config
 import logging
 
-def run_scoring(df: pd.DataFrame) -> None:
+def update(df: pd.DataFrame) -> None:
     activity = df.copy()
     activity = activity.drop(["date", "pc", "domain", "user_id", "employee_name", "Domain", "Email"], axis=1)
     activity_score = activity.groupby("Role")["activity"].count().sort_values(ascending=False).reset_index(name='conn_count')
