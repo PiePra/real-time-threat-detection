@@ -9,6 +9,6 @@ df = cache.get_cached_df(config.TIMESTAMP_SCORE)
 
 df["cum_sum"] = df["cum_sum"].apply(lambda x: np.random.random)
 
-cache.cache_df(config.WEB_SCORE, df)
+cache.cache_df(config.TIMESTAMP_SCORE, df)
 
         
